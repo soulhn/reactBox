@@ -7,8 +7,9 @@ import {useState, useTransition} from "react";
 function App() {
   let post = "하양 우동 맛집";
   let [titleName, titleChanger] = useState(["남자 코트 추천", "강남 우동 맛집", "파이썬 독학"]);
-  let [likeCount, likeCountChanger] = useState(0);
+  let [likeCount, likeCountChanger] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  let [title, setTitle] = useState(0, 1, 2);
 
   return (
     <div className="App">
@@ -32,15 +33,10 @@ function App() {
           배열 정렬하기
         </button>
       </div>
-      <div className="list">
+      {/* <div className="list">
         <h4>
           {titleName[0]} <span onClick={() => likeCountChanger(likeCount + 1)}>👍</span> {likeCount}
         </h4>
-        <p>9월 19일 발행</p>
-      </div>
-
-      <div className="list">
-        <h4>{titleName[1]}</h4>
         <p>9월 19일 발행</p>
       </div>
 
@@ -53,19 +49,56 @@ function App() {
           {titleName[2]}
         </h4>
         <p>9월 19일 발행</p>
-      </div>
+      </div> */}
 
-      {modal === true ? <Modal /> : null}
+      {titleName.map(function (a, i) {
+        return (
+          <div className="list" key={i}>
+            <h4
+              onClick={() => {
+                setModal(!modal);
+                setTitle(i);
+              }}
+            >
+              {titleName[i]}
+              <span
+                onClick={() => {
+                  let likeCopy = [...likeCount];
+                  likeCopy[i] = likeCopy[i] + 1;
+                  likeCountChanger(likeCopy);
+                }}
+              >
+                👍
+              </span>
+              {likeCount[i]}
+            </h4>
+            <p>9월 19일 발행</p>
+          </div>
+        );
+      })}
+
+      <input type="text" />
+      <input type="range" />
+
+      {modal === true ? <Modal title={title} titleName={titleName} titleChanger={titleChanger} /> : null}
     </div>
   );
 }
-
-function Modal() {
+function Modal(props) {
   return (
     <div className="modal">
-      <h4>제목</h4>
+      <h4>{props.titleName[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button
+        onClick={() => {
+          let titleNameCopy = [...props.titleName];
+          titleNameCopy[0] = "여자 코트 추천";
+          props.titleChanger(titleNameCopy);
+        }}
+      >
+        글수정
+      </button>
     </div>
   );
 }
