@@ -10,6 +10,7 @@ function App() {
   let [likeCount, likeCountChanger] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0, 1, 2);
+  let [inputValue, setInputValue] = useState("");
 
   return (
     <div className="App">
@@ -62,7 +63,8 @@ function App() {
             >
               {titleName[i]}
               <span
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   let likeCopy = [...likeCount];
                   likeCopy[i] = likeCopy[i] + 1;
                   likeCountChanger(likeCopy);
@@ -77,8 +79,11 @@ function App() {
         );
       })}
 
-      <input type="text" />
-      <input type="range" />
+      <input
+        onChange={(e) => {
+          setInputValue(e.target.value);
+        }}
+      />
 
       {modal === true ? <Modal title={title} titleName={titleName} titleChanger={titleChanger} /> : null}
     </div>
