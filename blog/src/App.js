@@ -2,7 +2,7 @@
 
 import logo from "./logo.svg";
 import "./App.css";
-import {useState, useTransition} from "react";
+import { useState, useTransition } from "react";
 
 function App() {
   let post = "하양 우동 맛집";
@@ -75,6 +75,15 @@ function App() {
               {likeCount[i]}
             </h4>
             <p>9월 19일 발행</p>
+            <button
+              onClick={() => {
+                let copy = [...titleName];
+                copy.splice(i, 1);
+                titleChanger(copy);
+              }}
+            >
+              삭제
+            </button>
           </div>
         );
       })}
@@ -84,6 +93,15 @@ function App() {
           setInputValue(e.target.value);
         }}
       />
+      <button
+        onClick={() => {
+          let copy = [...titleName];
+          copy.unshift(inputValue);
+          titleChanger(copy);
+        }}
+      >
+        글 발행
+      </button>
 
       {modal === true ? <Modal title={title} titleName={titleName} titleChanger={titleChanger} /> : null}
     </div>
