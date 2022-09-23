@@ -11,8 +11,17 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route />
-        <Route />
+        <Route
+          path="/"
+          element={
+            <div>
+              메인페이지
+              <Link to="/detail">디테일로</Link>
+            </div>
+          }
+        />
+        <Route path="/detail" element={<div>상세페이지</div>} />
+        <Route path="/about" element={<div>어바웃페이지</div>} />
         <Route />
         <Route />
       </Routes>
@@ -21,7 +30,7 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">설핑몰</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">홈으로</Nav.Link>
+            <Nav.Link href="/">홈으로</Nav.Link>
             <Nav.Link href="#features">상품</Nav.Link>
             <Nav.Link href="#pricing">질문 </Nav.Link>
           </Nav>
