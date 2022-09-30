@@ -1,29 +1,12 @@
+img {
+  height: 200px;
+  width: 200px;
+}
+
+/* 커스텀 종료 */
+
 .App {
   text-align: center;
-}
-
-div {
-  box-sizing: border-box;
-}
-.list {
-  padding-left: 20px;
-  text-align: left;
-  border-bottom: 1px solid slateblue;
-}
-
-.modal {
-  margin-top: 20px;
-  padding: 20px;
-  background: gainsboro;
-  text-align: left;
-}
-
-.black-nav {
-  display: flex;
-  background: black;
-  width: 100%;
-  color: white;
-  padding-left: 20px;
 }
 
 .App-logo {
