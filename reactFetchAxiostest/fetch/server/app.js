@@ -1,5 +1,8 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
+app.use(cors()); //cors 정책을 해결해주는 미들 웨어
 
 app.use(express.json()); // bodyPasing json 구문 분석
 app.use(express.urlencoded({ extended: true })); // x-www-form-url 인코딩용
@@ -33,6 +36,6 @@ app.post("/api/todo", (req, res) => {
   return res.send("성공했어요! app.post /api/todo");
 });
 
-app.listen(3000, () => {
-  console.log("3000 server start");
+app.listen(4000, () => {
+  console.log("4000 server start");
 }); //콜백함수를 통하여 서버 실행 시 알려줌
