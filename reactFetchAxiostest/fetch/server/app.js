@@ -28,6 +28,7 @@ app.get("/api/todo", (req, res) => {
 app.post("/api/todo", (req, res) => {
   // 프론트에서 서버로 데이터 보낼 때 body에 데이터를 넣어서 보냄
   const { text, done } = req.body; //express에서 바디에서 데이터를 꺼내 쓰려면 bodypareser가 필요, 기본적으로 지원
+  console.log("req.body : ", req.body); //body 태그로 넘어오는 지 확인
   todoList.push({
     id: id++,
     text,
