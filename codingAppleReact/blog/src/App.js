@@ -51,8 +51,38 @@ function App() {
         <h4>{postTitle[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
+
+      <Modal></Modal>
+      <Test></Test>
     </div>
   );
 }
 
+// 모달 컴포넌트 작성
+function Modal() {
+  return (
+    <>
+      <div className="modal">
+        <h4>제목</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+      <div>
+        <h2>빈 태그로 감싼다면</h2>
+        <h2>병렬 작성 가능</h2>
+      </div>
+    </>
+  );
+}
+
+// 테스트 컴포넌트 작성
+function Test() {
+  return (
+    <>
+      <div>
+        <h1>테스트 컴포넌트 입니다.</h1>
+      </div>
+    </>
+  );
+}
 export default App;
