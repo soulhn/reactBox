@@ -6,6 +6,7 @@ import { useState } from "react";
 function App() {
   let [postTitle, postTitleChanger] = useState(["가가가", "나나나", "다다다"]); //글 제목
   let [like, likeChanger] = useState(0); // 좋아요 저장 공간
+  let [modal, setModal] = useState(false); //모달창 켜고 닫기
 
   function likeCounter() {
     likeChanger(like + 1);
@@ -48,9 +49,11 @@ function App() {
       </div>
 
       <div className="list">
-        <h4>{postTitle[2]}</h4>
+        <h4 onClick={() => setModal(!modal)}>{postTitle[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
+
+      {modal === true ? <Modal /> : null}
 
       <Modal></Modal>
       <Test></Test>
@@ -85,4 +88,5 @@ function Test() {
     </>
   );
 }
+// 모달창 만들기
 export default App;
