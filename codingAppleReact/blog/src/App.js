@@ -53,6 +53,17 @@ function App() {
         <p>2월 17일 발행</p>
       </div>
 
+      {postTitle.map(function (a, i) {
+        return (
+          <div className="list" key={i}>
+            <h4>
+              {postTitle[i]} <span onClick={likeCounter}>❤</span> {like}
+            </h4>
+            <p>2월 17일 발행</p>
+          </div>
+        );
+      })}
+
       {modal === true ? <Modal /> : null}
 
       <Modal></Modal>
@@ -88,5 +99,5 @@ function Test() {
     </>
   );
 }
-// 모달창 만들기
+// map : 많은 div들을 반복문으로 줄이고 싶은 충동이 들 때
 export default App;
