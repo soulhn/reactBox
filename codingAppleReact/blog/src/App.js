@@ -4,13 +4,9 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  let [postTitle, postTitleChanger] = useState(["가가가", "나나나", "다다다"]); //글 제목
-  let [like, likeChanger] = useState(0); // 좋아요 저장 공간
+  let [postTitle, postTitleChanger] = useState(["감자맛집 추천", "남자코트 추천", "다사맛집 추천"]); //글 제목
+  let [like, likeChanger] = useState([0, 0, 0]); // 좋아요 저장 공간
   let [modal, setModal] = useState(false); //모달창 켜고 닫기
-
-  function likeCounter() {
-    likeChanger(like + 1);
-  }
 
   return (
     <div className="App">
@@ -36,54 +32,48 @@ function App() {
       >
         가나다순정렬
       </button>
-      <div className="list">
-        <h4>
-          {postTitle[0]} <span onClick={likeCounter}>❤</span> {like}
-        </h4>
-        <p>2월 17일 발행</p>
-      </div>
-
-      <div className="list">
-        <h4>{postTitle[1]}</h4>
-        <p>2월 17일 발행</p>
-      </div>
-
-      <div className="list">
-        <h4 onClick={() => setModal(!modal)}>{postTitle[2]}</h4>
-        <p>2월 17일 발행</p>
-      </div>
 
       {postTitle.map(function (a, i) {
         return (
           <div className="list" key={i}>
-            <h4>
-              {postTitle[i]} <span onClick={likeCounter}>❤</span> {like}
+            <h4
+              onClick={() => {
+                setModal(!modal);
+              }}
+            >
+              {postTitle[i]}{" "}
+              <span
+                onClick={() => {
+                  let copy = [...like];
+                  copy[i] = copy[i] + 1;
+                  likeChanger(copy);
+                }}
+              >
+                ❤
+              </span>{" "}
+              {like[i]}
             </h4>
             <p>2월 17일 발행</p>
           </div>
         );
       })}
 
-      {modal === true ? <Modal /> : null}
+      {modal === true ? <Modal color={"yellow"} postTitle={postTitle} /> : null}
 
-      <Modal></Modal>
-      <Test></Test>
+      <Test />
     </div>
   );
 }
 
 // 모달 컴포넌트 작성
-function Modal() {
+function Modal(props) {
   return (
     <>
-      <div className="modal">
-        <h4>제목</h4>
+      <div className="modal" style={{ background: props.color }}>
+        <h4>{props.postTitle}</h4>
         <p>날짜</p>
         <p>상세내용</p>
-      </div>
-      <div>
-        <h2>빈 태그로 감싼다면</h2>
-        <h2>병렬 작성 가능</h2>
+        <button>글수정</button>
       </div>
     </>
   );
