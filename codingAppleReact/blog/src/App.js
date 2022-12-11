@@ -7,6 +7,7 @@ function App() {
   let [postTitle, postTitleChanger] = useState(["감자맛집 추천", "남자코트 추천", "다사맛집 추천"]); //글 제목
   let [like, likeChanger] = useState([0, 0, 0]); // 좋아요 저장 공간
   let [modal, setModal] = useState(false); //모달창 켜고 닫기
+  let [title, setTitle] = useState();
 
   return (
     <div className="App">
@@ -39,6 +40,7 @@ function App() {
             <h4
               onClick={() => {
                 setModal(!modal);
+                setTitle(i);
               }}
             >
               {postTitle[i]}{" "}
@@ -58,7 +60,7 @@ function App() {
         );
       })}
 
-      {modal === true ? <Modal color={"yellow"} postTitle={postTitle} /> : null}
+      {modal === true ? <Modal title={title} postTitleChanger={postTitleChanger} color={"yellow"} postTitle={postTitle} /> : null}
 
       <Test />
     </div>
@@ -70,10 +72,10 @@ function Modal(props) {
   return (
     <>
       <div className="modal" style={{ background: props.color }}>
-        <h4>{props.postTitle}</h4>
+        <h4>{props.postTitle[props.title]}</h4>
         <p>날짜</p>
         <p>상세내용</p>
-        <button>글수정</button>
+        <button onClick={() => props.postTitleChanger(["여자맛집 추천", "남자코트 추천", "다사맛집 추천"])}>글수정</button>
       </div>
     </>
   );
@@ -89,5 +91,5 @@ function Test() {
     </>
   );
 }
-// map : 많은 div들을 반복문으로 줄이고 싶은 충동이 들 때
+// props를 응용한 상세페이지 만들기
 export default App;
