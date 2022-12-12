@@ -8,6 +8,7 @@ function App() {
   let [like, likeChanger] = useState([0, 0, 0]); // 좋아요 저장 공간
   let [modal, setModal] = useState(false); //모달창 켜고 닫기
   let [title, setTitle] = useState();
+  let [userInput, setUserInput] = useState("");
 
   return (
     <div className="App">
@@ -43,22 +44,33 @@ function App() {
                 setTitle(i);
               }}
             >
-              {postTitle[i]}{" "}
+              {postTitle[i]}
               <span
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   let copy = [...like];
                   copy[i] = copy[i] + 1;
                   likeChanger(copy);
                 }}
               >
                 ❤
-              </span>{" "}
+              </span>
+              {/*  e.stopPropagation(); 이벤트 버블링을 방지하는 코드 */}
               {like[i]}
             </h4>
             <p>2월 17일 발행</p>
           </div>
         );
       })}
+
+      <input
+        onChange={(e) => {
+          setUserInput(e.target.value);
+          console.log(userInput);
+        }}
+        type="text"
+      />
+      {/* 입력값 콘솔창에 출력하기 */}
 
       {modal === true ? <Modal title={title} postTitleChanger={postTitleChanger} color={"yellow"} postTitle={postTitle} /> : null}
 
@@ -91,5 +103,5 @@ function Test() {
     </>
   );
 }
-// props를 응용한 상세페이지 만들기
+// input 1 : 사용자가 입력한 글 다루기
 export default App;
