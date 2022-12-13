@@ -59,6 +59,15 @@ function App() {
               {like[i]}
             </h4>
             <p>2월 17일 발행</p>
+            <button
+              onClick={() => {
+                let copy = [...postTitle];
+                copy.splice(i, 1);
+                postTitleChanger(copy);
+              }}
+            >
+              삭제버튼
+            </button>
           </div>
         );
       })}
@@ -70,6 +79,15 @@ function App() {
         }}
         type="text"
       />
+      <button
+        onClick={() => {
+          let copy = [...postTitle];
+          copy.unshift(userInput);
+          postTitleChanger(copy);
+        }}
+      >
+        글발행
+      </button>
       {/* 입력값 콘솔창에 출력하기 */}
 
       {modal === true ? <Modal title={title} postTitleChanger={postTitleChanger} color={"yellow"} postTitle={postTitle} /> : null}
@@ -103,5 +121,6 @@ function Test() {
     </>
   );
 }
-// input 1 : 사용자가 입력한 글 다루기
+// input 다루기 2 : 블로그 글발행 기능 만들기
+
 export default App;
