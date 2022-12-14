@@ -123,4 +123,44 @@ function Test() {
 }
 // input 다루기 2 : 블로그 글발행 기능 만들기
 
+// 클래스로 컴포넌트 만들기(구 문법)
+
+class Modal1 extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return <div>안녕</div>;
+  }
+}
+
+class Modal2 extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "kim",
+      age: 20,
+    };
+  }
+
+  render() {
+    return <div>안녕 {this.state.name}</div>;
+  }
+}
+
+class Modal3 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "kim",
+      age: 20,
+    };
+  }
+
+  render() {
+    return <div>안녕 {this.props.프롭스이름}</div>;
+  }
+}
+
 export default App;
